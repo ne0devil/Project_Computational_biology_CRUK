@@ -10,7 +10,7 @@ library(GSEABase)
 library(devEMF)
 # loading all PBMC data set 
 
-pbmc.data = Read10X(data.dir = "D:/AbroadStudies/Uofg/Project/filtered_matrices_genes_bc")
+pbmc.data = Read10X(data.dir = "/path_to_to_the_file/filtered_matrices_genes_bc")
 
 
 pbmc = CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
@@ -187,5 +187,5 @@ saving_plots = function(path,ggp)
   dev.off()
 }
 
-saving_plots("D:/AbroadStudies/Uofg/Project/plots/Enrichment_MS4A1.emf",d_plot)
+saving_plots("/path_to_to_the_file/Enrichment_MS4A1.emf",d_plot)
 
