@@ -19,5 +19,5 @@ Repository: CRAN
 Local Moran's I statistics
 https://cran.r-project.org/web/packages/spdep/spdep.pdf
 
-# Pathway Infomation aka scores for each cell : AUCell #
+# Pathway Infomation aka scores for each cell on the UMAP : AUCell #
 https://github.com/aertslab/AUCell
