@@ -1,4 +1,3 @@
-
 # loading all the libraries
 library(Seurat)
 library(ggplot2)
@@ -9,14 +8,17 @@ library(AUCell)
 library(GSEABase)
 library(wesanderson)
 library(devEMF)
+
+# publicly available dataset PBMCs via 10x Genomics
+# Link: https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+
+# Following the PBMC 3K guided Tutorial vignette provided by the Sajita Labs
+
 # loading all PBMC data set 
-
-pbmc.data = Read10X(data.dir = "D:/AbroadStudies/Uofg/Project/filtered_matrices_genes_bc")
-
+pbmc.data = Read10X(data.dir = "/path_to_to_the_file/filtered_matrices_genes_bc")
 
 pbmc = CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
 pbmc
-
 
 # QC step
 # filtering out cells which have unique feature counts over 2,500 or less than 200
@@ -258,7 +260,8 @@ print(jd_plot_with_statistics)
 
 # Constructing a gene Set
 set.seed(123)
-broad_set1 = getBroadSets(uri = c("D:/AbroadStudies/Uofg/Project/Pathways/BIOCARTA_BLYMPHOCYTE_PATHWAY.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/BIOCARTA_BCR_PATHWAY.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_NAIVE_T_CELL.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_NK_CELLS.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_CD8_T_CELL.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_MONOCYTE.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_PLATELET.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_FOLLICULAR_B_CELL.v2023.1.Hs.xml","D:/AbroadStudies/Uofg/Project/Pathways/HAY_BONE_MARROW_IMMATURE_NEUTROPHIL.v2023.1.Hs.xml"),membersId ="MEMBERS_SYMBOLIZED")
+# Gene-sets downloaded locally from the MSig database and loaded into the broad_set as done below.
+broad_set1 = getBroadSets(uri = c("/path_to_to_the_file/BIOCARTA_BLYMPHOCYTE_PATHWAY.v2023.1.Hs.xml","/path_to_to_the_file/BIOCARTA_BCR_PATHWAY.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_NAIVE_T_CELL.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_NK_CELLS.v2023.1.Hs.xml","/path_to_to_the_file/Pathways/HAY_BONE_MARROW_CD8_T_CELL.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_MONOCYTE.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_PLATELET.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_FOLLICULAR_B_CELL.v2023.1.Hs.xml","/path_to_to_the_file/HAY_BONE_MARROW_IMMATURE_NEUTROPHIL.v2023.1.Hs.xml"),membersId ="MEMBERS_SYMBOLIZED")
 
 # extracting expression matrix from the Seurat object
 expression_mat = pbmc@assays[["RNA"]]@counts
@@ -380,6 +383,4 @@ saving_plots = function(path,ggp)
   dev.off()
 }
 
-saving_plots("D:/AbroadStudies/Uofg/Project/plots/Pathway(multiple_Neutrophil_monnocyte)_enrichment.emf",jp_pe_plot)
-
-
+saving_plots("/path_to_to_the_file/(multiple_Neutrophil_monnocyte)_enrichment.emf",jp_pe_plot)
