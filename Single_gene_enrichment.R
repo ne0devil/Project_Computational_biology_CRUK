@@ -8,6 +8,12 @@ library(wesanderson)
 library(AUCell)
 library(GSEABase)
 library(devEMF)
+
+# publicly available dataset PBMCs via 10x Genomics
+# Link: https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+
+# Following the PBMC 3K guided Tutorial vignette provided by the Sajita Labs
+
 # loading all PBMC data set 
 
 pbmc.data = Read10X(data.dir = "/path_to_to_the_file/filtered_matrices_genes_bc")
